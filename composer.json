@@ -11,6 +11,6 @@
         "psr-0": {
             "InvoiceBundle\\Tests\\": "test/"
         }
-    },  
+    }  
 } 
 
