@@ -1,13 +1,16 @@
 {
-    "require-dev": {
-        "phpunit/phpunit": "3.7.*"
-    },
-    "require": {
-    	"tecnick.com/tcpdf": "6.0.013"
-    },
-    "autoload": {
+  "name": "whmcs/invoice-bundle",
+  "type": "library",
+  
+   "autoload": {
         "psr-0": {
-            "InvoiceBundle\\": "WhmcsInvoice/src/"
+            "InvoiceBundle\\": "src/"
         }
-    }
-}
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "InvoiceBundle\\Tests\\": "test/"
+        }
+    },  
+} 
+
