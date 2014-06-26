@@ -3,7 +3,7 @@
   "type": "library",
   
    "autoload": {
-        "psr-40": {
+        "psr-4": {
             "InvoiceBundle\\": "src/"
         }
     }
