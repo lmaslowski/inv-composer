@@ -3,14 +3,9 @@
   "type": "library",
   
    "autoload": {
-        "psr-0": {
+        "psr-40": {
             "InvoiceBundle\\": "src/"
         }
-    },
-    "autoload-dev": {
-        "psr-0": {
-            "InvoiceBundle\\Tests\\": "test/"
-        }
-    }  
+    }
 } 
 
