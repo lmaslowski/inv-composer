@@ -4,7 +4,8 @@
   
    "autoload": {
         "psr-4": {
-            "InvoiceBundle\\": "src/"
+            "InvoiceBundle\\": "src/",
+	    "InvoiceBundle\\Tests\\": "tests/"
         }
     }
 } 
