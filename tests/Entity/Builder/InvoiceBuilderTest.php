@@ -1,6 +1,8 @@
 <?php
+namespace InvoiceBundle\Tests\Entity\Builder;
+
 use InvoiceBundle\Entity\Builder\InvoiceBuilder;
-class InvoiceBuilderTest extends PHPUnit_Framework_TestCase{
+class InvoiceBuilderTest extends \PHPUnit_Framework_TestCase{
     private $invoiceBuilder;
     
     public function setUp(){

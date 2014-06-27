@@ -1,2 +1,3 @@
 <?php
-require_once 'InvoiceAutoloaderTest.php';
+
+require __DIR__ . '/../vendor/autoload.php';

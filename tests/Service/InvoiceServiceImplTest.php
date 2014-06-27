@@ -1,5 +1,7 @@
 <?php
-class InvoiceServiceImplTest extends PHPUnit_Framework_TestCase{
+namespace InvoiceBundle\Tests\Service;
+
+class InvoiceServiceImplTest extends \PHPUnit_Framework_TestCase{
     private $invoiceServiceImpl;
     
     public function setUp(){

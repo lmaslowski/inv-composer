@@ -1,4 +1,6 @@
 <?php
+require_once './vendor/autoload.php';
+// use InvoiceBundle\Service\InvoiceServiceImpl;
 // use Dao\InvoiceWrapperBuilder;
 // use InvoicePrinter\InvoicePdfDataContainer;
 // use InvoicePrinter\InvoicePdfBuilder;
@@ -12,12 +14,15 @@
 // use Service\InvoiceServiceImpl;
 
 
-require_once 'vendor/autoload.php';
 
 
 
 
-use InvoiceBundle\Service;
+
+
+use InvoiceBundle\Entity\Client;
+use InvoiceBundle\Service\InvoiceServiceImpl;
+use InvoiceBundle\Storage\PdfStorageImpl;
 
 // require_once './WhmcsInvoice/src/InvoiceBundle/InvoiceAutoloader.php';
 // require_once './vendor/tecnick.com/tcpdf/tcpdf.php';
@@ -215,10 +220,12 @@ $pdf = new TCPDF();
 $pdf->AddPage();
 
 
+$client = new Client();
 
 
 
-$invSer = new InvoiceBundle\Service\InvoiceServiceImpl($invoiceProperties, $clientProperties, $pdf);
+
+$invSer = new InvoiceServiceImpl($invoiceProperties, $clientProperties, $pdf);
 
 // $invSer->archivePdfInvoice('../pdfinvoice', '/'. $invSer->getYearAndMounthPaidData(), 'okokolo12');
 
