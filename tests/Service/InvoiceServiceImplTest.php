@@ -26,7 +26,7 @@ class InvoiceServiceImplTest extends \PHPUnit_Framework_TestCase{
     public function testInvoiceNumber(){
         $this->assertEquals('SRV-2014-06-244', $this->getInvoiceServiceImpl()->getInvoiceNumber());
     }
-    
+
     /**
      * @return InvoiceServiceImpl
      */
