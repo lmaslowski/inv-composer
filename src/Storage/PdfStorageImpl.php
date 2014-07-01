@@ -1,6 +1,8 @@
 <?php
 namespace InvoiceBundle\Storage;
 
+use InvoiceBundle\Storage\Exception\DirNotExistsException;
+use InvoiceBundle\Storage\Exception\DirPermissionDenied;
 class PdfStorageImpl implements PdfStorage{
 
     private $tcpdf;
@@ -9,8 +11,12 @@ class PdfStorageImpl implements PdfStorage{
     public function __construct(\TCPDF $tcpdf, $baseStorageDir, $subDir = null){
         $this->tcpdf = $tcpdf;
 
+        if(!is_dir($baseStorageDir)){
+            throw new DirNotExistsException();
+        }
+        
         if(!is_readable($baseStorageDir) || !is_writable($baseStorageDir)){
-            throw new \Exception($baseStorageDir . ' is not readable or not writable');
+            throw new DirPermissionDenied($baseStorageDir . ' is not readable or not writable');
         }
         
         if($subDir == null){
@@ -23,8 +29,12 @@ class PdfStorageImpl implements PdfStorage{
             mkdir($storageDir);
         }
         
+        if(!is_dir($storageDir)){
+            throw new DirNotExistsException();
+        }
+        
         if(!is_readable($storageDir) || !is_writable($storageDir)){
-            throw new \Exception($storageDir . ' is not readable or not writable');
+            throw new DirPermissionDenied($storageDir . ' is not readable or not writable');
         }
         
         $this->storageDirPath  = $storageDir; 
