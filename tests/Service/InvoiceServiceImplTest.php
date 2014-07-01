@@ -1,14 +1,35 @@
 <?php
 namespace InvoiceBundle\Tests\Service;
 
+use InvoiceBundle\Service\InvoiceServiceImpl;
 class InvoiceServiceImplTest extends \PHPUnit_Framework_TestCase{
     private $invoiceServiceImpl;
     
     public function setUp(){
         parent::setUp();
+        $this->invoiceServiceImpl = new InvoiceServiceImpl($this->getInvoiceProperties(), $this->getClientProperties(), new \TCPDF());
+      
     }
     
+    public function tearDown(){
+        $this->invoiceServiceImpl = null;
+    }
     
+    public function testInvoiceIsPaid(){
+        $this->assertTrue($this->getInvoiceServiceImpl()->isPaid());
+    }
+    
+    public function testInvoiceYearMonthPaidDate(){
+        $this->assertEquals('201406', $this->getInvoiceServiceImpl()->getYearAndMounthPaidData());
+    }
+    
+    public function testInvoiceNumber(){
+        $this->assertEquals('SRV-2014-06-244', $this->getInvoiceServiceImpl()->getInvoiceNumber());
+    }
+    
+    /**
+     * @return InvoiceServiceImpl
+     */
     private function getInvoiceServiceImpl(){
         return $this->invoiceServiceImpl;
     }
