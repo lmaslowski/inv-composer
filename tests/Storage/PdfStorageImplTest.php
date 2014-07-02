@@ -29,10 +29,10 @@ class PdfStorageImplTest extends \PHPUnit_Framework_TestCase{
      * 
      */
     public function savePdfToStorageDir(){
-        $this->getPdfStorageImpl()->save('invoiceFileName-1');
+        $this->getPdfStorageImpl()->save('invoiceFileName-2');
         ;
-        $this->assertTrue(file_exists(dirname(__FILE__).'/_pdfStorageDir/invoiceFileName-1.pdf'));
-        unlink(dirname(__FILE__).'/_pdfStorageDir/invoiceFileName-1.pdf');
+        $this->assertTrue(file_exists(dirname(__FILE__).'/_pdfStorageDir/invoiceFileName-2.pdf'));
+        unlink(dirname(__FILE__).'/_pdfStorageDir/invoiceFileName-2.pdf');
     }
 
     /**
