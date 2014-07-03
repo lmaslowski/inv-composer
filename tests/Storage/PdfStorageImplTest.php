@@ -50,6 +50,8 @@ class PdfStorageImplTest extends \PHPUnit_Framework_TestCase{
      */
     public function saveExistResource(){
         $this->getPdfStorageImpl()->save('invoiceFileName-1');
+        $this->assertTrue(file_exists(dirname(__FILE__).'/_pdfStorageDir/invoiceFileName-2.pdf'));
+        unlink(dirname(__FILE__).'/_pdfStorageDir/invoiceFileName-2.pdf');
     }
 
 
