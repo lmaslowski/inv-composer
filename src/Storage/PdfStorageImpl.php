@@ -3,20 +3,21 @@ namespace InvoiceBundle\Storage;
 
 use InvoiceBundle\Storage\Exception\DirNotExistsException;
 use InvoiceBundle\Storage\Exception\DirPermissionDenied;
+use InvoiceBundle\Storage\Exception\DirPermissionDeniedException;
+use InvoiceBundle\Storage\Exception\ResourceExistsException;
+use InvoiceBundle\Storage\Exception\ResourceNotExistsException;
 class PdfStorageImpl implements PdfStorage{
 
     private $tcpdf;
     private $storageDirPath;
     
     public function __construct(\TCPDF $tcpdf, $baseStorageDir, $subDir = null){
-        $this->tcpdf = $tcpdf;
-
         if(!is_dir($baseStorageDir)){
             throw new DirNotExistsException();
         }
         
         if(!is_readable($baseStorageDir) || !is_writable($baseStorageDir)){
-            throw new DirPermissionDenied($baseStorageDir . ' is not readable or not writable');
+            throw new DirPermissionDeniedException($baseStorageDir . ' is not readable or not writable');
         }
         
         if($subDir == null){
@@ -34,9 +35,10 @@ class PdfStorageImpl implements PdfStorage{
         }
         
         if(!is_readable($storageDir) || !is_writable($storageDir)){
-            throw new DirPermissionDenied($storageDir . ' is not readable or not writable');
+            throw new DirPermissionDeniedException($storageDir . ' is not readable or not writable');
         }
         
+        $this->tcpdf = $tcpdf;
         $this->storageDirPath  = $storageDir; 
     }
 
@@ -59,7 +61,7 @@ class PdfStorageImpl implements PdfStorage{
             $this->getPdf()->output($filename, "F");
             return;
         }
-        throw new \Exception($filename . ' exist now');
+        throw new ResourceExistsException($filename . ' exist now');
     }
     
     public function readAndRender($invoiceNum){
@@ -71,7 +73,7 @@ class PdfStorageImpl implements PdfStorage{
         $filename = $this->getStorageDirPath() ."/". $invoiceNum.".pdf";
         
         if(!file_exists($filename)){
-            throw new \Exception($filename . ' don\'t exists');
+            throw new ResourceNotExistsException($filename . ' don\'t exists');
         }
         
         if ($fd = fopen ($filename, "r")) {
